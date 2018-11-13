@@ -1,8 +1,10 @@
 import express from "express";
 import expressGraphQL from "express-graphql";
 import mongoose from "mongoose";
+import morgan from "morgan";
 import cors from "cors";
 import bodyParser from "body-parser";
+
 import { ApolloLink } from "apollo-link";
 
 import schema from "./graphql/";
@@ -25,6 +27,7 @@ mongoose
 app.use(
   "/graphql",
   cors(),
+  // morgan("combined"),
   bodyParser.json(),
   expressGraphQL({ schema, graphiql: true })
 );

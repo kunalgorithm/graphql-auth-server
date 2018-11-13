@@ -1,6 +1,7 @@
 import { mergeResolvers } from "merge-graphql-schemas";
 
 import User from "./User";
-const resolvers = [User];
+import AuthPayload from "./AuthPayload";
+const resolvers = [User, AuthPayload];
 
 export default mergeResolvers(resolvers);
