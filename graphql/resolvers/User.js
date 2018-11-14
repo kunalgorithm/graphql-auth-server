@@ -22,16 +22,38 @@ export default {
     }
   },
   Mutation: {
-    editUser: async (root, { id, name, email }) => {
+    editUser: async (root, args) => {
+      console.log("Editting user ", { args });
+      let update = {};
+      if (args.name) update.name = args.name;
+      if (args.email) update.email = args.email;
       try {
-        User.findByIdAndUpdate({ id }, { $set: { name, email } });
+        return User.findOneAndUpdate(
+          { id: args.id },
+          update,
+          { new: true },
+          (err, doc) => {
+            if (err) {
+              console.log(err);
+            } else {
+              return doc;
+            }
+          }
+        );
       } catch (error) {
         console.log(error);
       }
     },
-    deleteUser: async (root, args) => {
+    deleteUser: async (root, { id }) => {
+      console.log("Deleting user", id);
       try {
-        User.findByIdAndDelete(args);
+        return User.findOneAndDelete({ id }, (err, doc) => {
+          if (err) {
+            console.log(err);
+          } else {
+            return doc;
+          }
+        });
       } catch (error) {
         console.log(error);
       }
