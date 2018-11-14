@@ -7,7 +7,7 @@ import bodyParser from "body-parser";
 
 import { ApolloLink } from "apollo-link";
 
-import schema from "./graphql/";
+import schema from "./graphql";
 
 const app = express();
 const PORT = process.env.PORT || "4000";
