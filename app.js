@@ -8,10 +8,17 @@ import bodyParser from "body-parser";
 import { ApolloLink } from "apollo-link";
 
 import schema from "./graphql";
+import { exists } from "fs";
 
 const app = express();
 const PORT = process.env.PORT || "4000";
-const db = "mongodb://kunal:iscool1@ds033709.mlab.com:33709/todotestlist546";
+let db;
+try {
+  db = process.env.MONGODB_URL;
+} catch (error) {
+  console.log(error);
+  process.exit(1);
+}
 
 mongoose
   .connect(

@@ -5,7 +5,8 @@
   "main": "app.js",
   "scripts": {
     "start": "nodemon --exec babel-node app.js",
-    "test": "ava"
+    "test": "ava",
+    "now": "now --dotenv"
   },
   "keywords": [],
   "author": "",
