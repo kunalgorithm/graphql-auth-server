@@ -15,7 +15,9 @@ export default {
     },
     users: async () => {
       try {
-        return await User.find({}).exec();
+        const users = await User.find({}).exec();
+        console.log("Queried users: ", users);
+        return users;
       } catch (error) {
         console.log(error);
       }

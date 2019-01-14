@@ -4,7 +4,7 @@ const chaiHttp = require("chai-http");
 
 chai.use(chaiHttp);
 
-const app = require("../app.js");
+const app = require("./src/index.js");
 
 describe("Person", () => {
   describe("Create Person", () => {

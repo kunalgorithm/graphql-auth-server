@@ -7,12 +7,13 @@ import bodyParser from "body-parser";
 
 import { ApolloLink } from "apollo-link";
 
-import schema from "./graphql";
 import { exists } from "fs";
+import typeDefs from "./types/";
+import resolvers from "./resolvers/";
+import { ApolloServer, gql } from "apollo-server-express";
+
 require("dotenv").config();
 
-const app = express();
-const PORT = process.env.PORT || "4000";
 let db;
 try {
   db = process.env.MONGODB_URL;
@@ -33,12 +34,23 @@ mongoose
   .then(() => console.log("MongoDB connected."))
   .catch(err => console.log(err));
 
-app.use(
-  "/graphql",
-  cors(),
-  // morgan("combined"),
-  bodyParser.json(),
-  expressGraphQL({ schema, graphiql: true })
-);
+const server = new ApolloServer({
+  typeDefs,
+  resolvers,
+  introspection: true,
+  playground: true
+});
 
-app.listen(PORT, () => console.log(`Server is running on port ${PORT}`));
+const app = express();
+server.applyMiddleware({ app });
+app.get("/", (req, res) => {
+  res.redirect("/graphql");
+});
+
+const port = process.env.PORT || "4000";
+
+app.listen({ port }, () =>
+  console.log(
+    `🚀 Server ready at http://localhost:${port}${server.graphqlPath}`
+  )
+);
