@@ -9,6 +9,7 @@ import { ApolloLink } from "apollo-link";
 
 import schema from "./graphql";
 import { exists } from "fs";
+require("dotenv").config();
 
 const app = express();
 const PORT = process.env.PORT || "4000";
