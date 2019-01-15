@@ -1,5 +1,5 @@
-import User from "./User";
-import AuthPayload from "./AuthPayload";
+const User = require("./User");
+const AuthPayload = require("./AuthPayload");
 const resolvers = { ...User, ...AuthPayload };
 
-export default resolvers;
+module.exports = resolvers;

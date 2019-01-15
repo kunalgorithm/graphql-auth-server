@@ -1,6 +1,6 @@
-import User from "../../models/User";
+const User = require("../../models/User");
 
-export default {
+module.exports = {
   Query: {
     user: (root, args) => {
       console.log("Authpayload resolved called for user.");

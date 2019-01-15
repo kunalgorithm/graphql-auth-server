@@ -1,10 +1,10 @@
-import User from "../../models/User";
-import mongoose from "mongoose";
-import bcrypt from "bcrypt";
-import jwt from "jsonwebtoken";
-import { APP_SECRET, getUserId } from "../utils";
+const User = require("../../models/User");
+const mongoose = require("mongoose");
+const bcrypt = require("bcrypt");
+const jwt = require("jsonwebtoken");
+const { APP_SECRET, getUserId } = require("../utils");
 
-export default {
+module.exports = {
   Query: {
     user: (root, args) => {
       return new Promise((resolve, reject) => {

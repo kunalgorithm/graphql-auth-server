@@ -1,16 +1,16 @@
-import express from "express";
-import expressGraphQL from "express-graphql";
-import mongoose from "mongoose";
-import morgan from "morgan";
-import cors from "cors";
-import bodyParser from "body-parser";
+const express = require("express");
+const expressGraphQL = require("express-graphql");
+const mongoose = require("mongoose");
+const morgan = require("morgan");
+const cors = require("cors");
+const bodyParser = require("body-parser");
 
-import { ApolloLink } from "apollo-link";
+const { ApolloLink } = require("apollo-link");
 
-import { exists } from "fs";
-import typeDefs from "./types/";
-import resolvers from "./resolvers/";
-import { ApolloServer, gql } from "apollo-server-express";
+const { exists } = require("fs");
+const typeDefs = require("./types/");
+const resolvers = require("./resolvers/");
+const { ApolloServer, gql } = require("apollo-server-express");
 
 require("dotenv").config();
 
