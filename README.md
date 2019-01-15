@@ -19,7 +19,7 @@ Server listens for requests at `http://localhost:4000/graphql`
 | Concurrently          | Run multiple npm commands concurrently.                                                 | https://www.npmjs.com/package/concurrently          |
 | Bcrypt                | Hashing and Salting passwords before storage.                                           | https://www.npmjs.com/package/bcrypt                |
 | Cors                  | Modify and limit requests from various IP addresses.                                    | https://www.npmjs.com/package/cors                  |
-| Merge GraphQL schemas | Merge GraphQL Schemas                                                                   | https://www.npmjs.com/package/merge-graphql-schemas |
+| Apollo Graphql Server | Apollo Graphql Servler                                                                  | https://www.npmjs.com/package/apollo-server-express |
 | Express               | NodeJS server                                                                           | https://expressjs.com                               |
 | Morgan                | Express Logging middleware                                                              | https://github.com/expressjs/morgan                 |
 
