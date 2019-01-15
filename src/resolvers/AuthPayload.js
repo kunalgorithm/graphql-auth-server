@@ -9,6 +9,14 @@ module.exports = {
           err ? reject(err) : resolve(res);
         });
       });
+    },
+    users: async (root, args) => {
+      console.log("users");
+      return new Promise((resolve, reject) => {
+        User.find().exec((err, res) => {
+          err ? reject(err) : resolve(res);
+        });
+      });
     }
   }
 };

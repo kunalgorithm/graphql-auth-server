@@ -5,24 +5,7 @@ const jwt = require("jsonwebtoken");
 const { APP_SECRET, getUserId } = require("../utils");
 
 module.exports = {
-  Query: {
-    user: (root, args) => {
-      return new Promise((resolve, reject) => {
-        User.findOne(args).exec((err, res) => {
-          err ? reject(err) : resolve(res);
-        });
-      });
-    },
-    users: async (root, args) => {
-      try {
-        const users = await User.find({}).exec();
-        console.log("Queried users: ", users);
-        return users;
-      } catch (error) {
-        console.log(error);
-      }
-    }
-  },
+  Query: {},
   Mutation: {
     editUser: async (root, args) => {
       console.log("Editting user ", { args });
