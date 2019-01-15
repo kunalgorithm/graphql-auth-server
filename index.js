@@ -1,4 +1,5 @@
 const express = require("express");
+const { ApolloServer, gql } = require("apollo-server-express");
 const expressGraphQL = require("express-graphql");
 const mongoose = require("mongoose");
 const morgan = require("morgan");
@@ -8,9 +9,8 @@ const bodyParser = require("body-parser");
 const { ApolloLink } = require("apollo-link");
 
 const { exists } = require("fs");
-const typeDefs = require("./types/");
-const resolvers = require("./resolvers/");
-const { ApolloServer, gql } = require("apollo-server-express");
+const typeDefs = require("./src/types/");
+const resolvers = require("./src/resolvers/");
 
 require("dotenv").config();
 
@@ -21,18 +21,6 @@ try {
   console.log(error);
   process.exit(1);
 }
-
-mongoose
-  .connect(
-    db,
-    {
-      useCreateIndex: true,
-      useNewUrlParser: true,
-      useFindAndModify: false
-    }
-  )
-  .then(() => console.log("MongoDB connected."))
-  .catch(err => console.log(err));
 
 const server = new ApolloServer({
   typeDefs,
@@ -47,10 +35,21 @@ app.get("/", (req, res) => {
   res.redirect("/graphql");
 });
 
-const port = process.env.PORT || "4000";
+const port = 4000;
 
-app.listen({ port }, () =>
+app.listen({ port }, () => {
+  mongoose
+    .connect(
+      db,
+      {
+        useCreateIndex: true,
+        useNewUrlParser: true,
+        useFindAndModify: false
+      }
+    )
+    .then(() => console.log("MongoDB connected."))
+    .catch(err => console.log(err));
   console.log(
     `🚀 Server ready at http://localhost:${port}${server.graphqlPath}`
-  )
-);
+  );
+});
