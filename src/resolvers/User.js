@@ -13,7 +13,7 @@ module.exports = {
         });
       });
     },
-    users: async () => {
+    users: async (root, args) => {
       try {
         const users = await User.find({}).exec();
         console.log("Queried users: ", users);
