@@ -12,8 +12,8 @@ const { exists } = require("fs");
 const typeDefs = require("./src/types");
 const resolvers = require("./src/resolvers");
 
-require("dotenv").config();
-
+if (process.env.NODE_ENV !== "production") require("dotenv").config();
+console.log("Starting up node graphql server.");
 let db;
 try {
   db = process.env.MONGODB_URL;
@@ -39,14 +39,11 @@ const port = 4000;
 
 app.listen({ port }, () => {
   mongoose
-    .connect(
-      db,
-      {
-        useCreateIndex: true,
-        useNewUrlParser: true,
-        useFindAndModify: false
-      }
-    )
+    .connect(db, {
+      useCreateIndex: true,
+      useNewUrlParser: true,
+      useFindAndModify: false
+    })
     .then(() => console.log("MongoDB connected."))
     .catch(err => console.log(err));
   console.log(
