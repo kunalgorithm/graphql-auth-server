@@ -4,7 +4,8 @@
   "description": "",
   "main": "src/index.js",
   "scripts": {
-    "start": "nodemon index.js",
+    "dev": "nodemon index.js",
+    "start": "node index.js",
     "test": "ava",
     "now": "now -e MONGODB_URL"
   },
