@@ -1,11 +1,30 @@
-const User = require("../../models/User");
+const User = require("../models/User");
 const mongoose = require("mongoose");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
-const { APP_SECRET, getUserId } = require("../utils");
+const { APP_SECRET, getUserId } = require("./utils");
+
+const queries = {
+  user: (root, args) => {
+    console.log("Authpayload resolved called for user.");
+    return new Promise((resolve, reject) => {
+      User.findOne(args).exec((err, res) => {
+        err ? reject(err) : resolve(res);
+      });
+    });
+  },
+  users: async (root, args) => {
+    console.log("users");
+    return new Promise((resolve, reject) => {
+      User.find().exec((err, res) => {
+        err ? reject(err) : resolve(res);
+      });
+    });
+  }
+};
 
 module.exports = {
-  Query: {},
+  Query: queries,
   Mutation: {
     editUser: async (root, args) => {
       console.log("Editting user ", { args });
@@ -48,6 +67,13 @@ module.exports = {
       try {
         const id = mongoose.Types.ObjectId();
         const password = await bcrypt.hash(args.password, 10);
+        const existingUser = await User.findOne({ email: args.email }).exec();
+        if (existingUser) {
+          console.log(
+            `Signup error: user with email ${args.email} already exists.`
+          );
+          return `Signup error: user with email ${args.email} already exists.`;
+        }
         const user = await new User({ id, email: args.email, password }).save();
         console.log(user);
 
@@ -80,7 +106,7 @@ module.exports = {
           user
         };
       } catch (error) {
-        console.log(`${email} could not log in. Got error: ${error}`);
+        console.log(`${error}. ${email} could not log in. `);
       }
     }
   }

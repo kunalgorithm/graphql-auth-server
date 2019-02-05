@@ -9,8 +9,8 @@ const bodyParser = require("body-parser");
 const { ApolloLink } = require("apollo-link");
 
 const { exists } = require("fs");
-const typeDefs = require("./src/types/");
-const resolvers = require("./src/resolvers/");
+const typeDefs = require("./src/types");
+const resolvers = require("./src/resolvers");
 
 require("dotenv").config();
 
