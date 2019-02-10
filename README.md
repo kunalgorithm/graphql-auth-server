@@ -4,9 +4,16 @@ A GraphQL authentication server built with Node, Express, MongoDB, Mongoose, and
 
 ## Usage
 
-`npm install` - install dependencies.
-`npm run start` - starts the development server with nodemon and babel/node.
-Server listens for requests at `http://localhost:4000/graphql`
+To begin, run 
+
+```npm install```
+to install dependencies. Then, 
+
+`npm run dev` 
+
+to start the server in development mode via nodemon, which restarts the server every time a change is detected. 
+
+Finally, visit the Apollo graphql playground at http://localhost:4000/graphql.
 
 ## Technologies
 
