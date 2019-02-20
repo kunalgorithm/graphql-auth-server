@@ -94,7 +94,7 @@ module.exports = {
         if (!user) {
           throw new Error("No such user found");
         }
-        const valid = bcrypt.compare(password, user.password);
+        const valid = await bcrypt.compare(password, user.password);
         if (!valid) {
           throw new Error("Invalid password");
         }
