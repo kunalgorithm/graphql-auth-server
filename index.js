@@ -30,6 +30,7 @@ const server = new ApolloServer({
 });
 
 const app = express();
+app.use(cors());
 server.applyMiddleware({ app });
 app.get("/", (req, res) => {
   res.redirect("/graphql");

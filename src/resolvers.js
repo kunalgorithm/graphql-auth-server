@@ -74,7 +74,12 @@ module.exports = {
           );
           return `Signup error: user with email ${args.email} already exists.`;
         }
-        const user = await new User({ id, email: args.email, password }).save();
+        const user = await new User({
+          id,
+          email: args.email,
+          name: args.name,
+          password
+        }).save();
         console.log(user);
 
         const token = jwt.sign({ userId: user.id }, APP_SECRET);
