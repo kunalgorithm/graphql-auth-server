@@ -4,11 +4,18 @@ A GraphQL authentication server built with Node, Express, MongoDB, Mongoose, and
 
 ## Usage
 
-To begin, run 
+To begin, clone the repository and run 
 
 ```npm install```
 
-to install dependencies. Then, 
+to install dependencies. Now, you need to hook your server up to a MongoDB database to store your data. Create one locally on your machine or use a remote database like [MLab](https://mlab.com/). Now, point the server to your database by creating a `.env` file and adding 
+
+```
+MONGODB_URL="mongodb://<DB_USER>:<DB_PASSWORD>@<HOST>:<PORT>/<DB_NAME>"
+```
+The server uses the `dotenv` node package to automatically read the `.env` file for the `MONGODB_URL` variable on start-up. 
+
+With that defined, run 
 
 ```npm run dev``` 
 
